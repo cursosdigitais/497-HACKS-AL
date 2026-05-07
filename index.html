@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>497 Mentale Konfrontationen</title>
+
+<link rel="preload" as="image" href="https://i.imgur.com/Tma790E.png" fetchpriority="high">
+<link rel="preload" as="image" href="https://i.imgur.com/Ugwkrm2.png" fetchpriority="high">
+
+<link rel="preload" as="image" href="https://i.imgur.com/8GSXj6Q.png">
+<link rel="preload" as="image" href="https://i.imgur.com/BbelDDi.png">
+<link rel="preload" as="image" href="https://i.imgur.com/V06dLel.png">
+<link rel="preload" as="image" href="https://i.imgur.com/4FZxz0K.png">
+
+<link rel="preload" as="image" href="https://i.imgur.com/FWRITQO.png">
+<link rel="preload" as="image" href="https://i.imgur.com/4pljYCc.png">
+<link rel="preload" as="image" href="https://i.imgur.com/s3aOoPX.png">
+<link rel="preload" as="image" href="https://i.imgur.com/3SSPBgi.png">
+<link rel="preload" as="image" href="https://i.imgur.com/cfbSndE.png">
+
+<link rel="preload" as="image" href="https://i.imgur.com/4NsDJ4r.png">
+<link rel="preload" as="image" href="https://i.imgur.com/TWZc1xU.png">
+<link rel="preload" as="image" href="https://i.imgur.com/ACVoHMg.png">
+<link rel="preload" as="image" href="https://i.imgur.com/g9PonpG.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ========== RESET & VARIABLES ========== */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#111827;
+  --bg-deep:#0a0f1a;
+  --bg-card:rgba(0,0,0,0.35);
+  --gold:#c9a84c;
+  --gold-light:#e2c97e;
+  --gold-dim:rgba(201,168,76,0.3);
+  --red:#e8192c;
+  --text:#e8e4dc;
+  --text-dim:rgba(232,228,220,0.55);
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'DM Sans',-apple-system,Helvetica,Arial,sans-serif;
+  --max:780px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit}
+
+/* ========== URGENCY BAR ========== */
+.urgency-bar{
+  width:100%;background:linear-gradient(135deg,#c0112b 0%,#e8192c 50%,#c0112b 100%);
+  background-size:200% 200%;animation:gradShift 4s ease infinite;
+  padding:8px 12px;display:flex;align-items:center;justify-content:center;gap:8px;
+  position:fixed;top:0;left:0;z-index:99999;height:42px;
+  box-shadow:0 2px 15px rgba(200,10,30,0.4);overflow:hidden;
+}
+.urgency-bar::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);
+  animation:shimmer 3s ease-in-out infinite;pointer-events:none}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes shimmer{0%{left:-100%}100%{left:150%}}
+.ub-fire{font-size:14px;animation:pulse .8s ease-in-out infinite alternate;flex-shrink:0}
+@keyframes pulse{0%{transform:scale(1);opacity:.75}100%{transform:scale(1.2);opacity:1}}
+.ub-dot{width:6px;height:6px;background:#ffe04a;border-radius:50%;animation:blink 1s ease-in-out infinite;box-shadow:0 0 6px rgba(255,224,74,.8);flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.ub-text{font-family:var(--sans);font-weight:700;color:#fff;font-size:12px;letter-spacing:.3px;text-transform:uppercase;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+.ub-timer{font-family:'SF Mono',Consolas,'Courier New',monospace;font-weight:700;font-size:13px;color:#fff;background:rgba(0,0,0,.3);border-radius:4px;padding:2px 7px;letter-spacing:1.5px;white-space:nowrap;flex-shrink:0;border:1px solid rgba(255,255,255,.1)}
+.ub-timer .sep{animation:blink 1s step-end infinite}
+
+/* ========== SOCIAL PROOF BADGE ========== */
+.sp-wrap{display:flex;justify-content:center;padding:16px 12px 8px}
+.sp-badge{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:5px 10px;
+  padding:10px 24px;background:rgba(0,0,0,.45);border:1px solid rgba(196,168,75,.35);
+  border-radius:50px;box-shadow:0 0 20px rgba(196,168,75,.06)}
+.sp-badge .stars{color:var(--gold);font-size:15px;letter-spacing:1px}
+.sp-badge .score{font-weight:700;font-size:15px;color:var(--gold)}
+.sp-badge .dot{width:4px;height:4px;border-radius:50%;background:var(--gold-dim);flex-shrink:0}
+.sp-badge .info{font-size:13px;color:var(--text-dim);white-space:nowrap}
+.sp-badge .info b{color:rgba(255,255,255,.8);font-weight:600}
+
+/* ========== LAYOUT HELPERS ========== */
+.container{max-width:var(--max);margin:0 auto;padding:0 20px}
+.spacer{height:42px}
+section{padding:60px 0}
+.text-center{text-align:center}
+
+/* ========== TYPOGRAPHY ========== */
+.headline{font-family:var(--serif);font-weight:700;font-size:clamp(28px,5.5vw,52px);line-height:1.15;color:var(--text);text-align:center;margin-bottom:16px}
+.headline em{color:var(--gold-light);font-style:italic}
+.subheadline{font-size:clamp(15px,2.5vw,19px);color:var(--text-dim);text-align:center;max-width:600px;margin:0 auto 32px;line-height:1.6}
+.section-title{font-family:var(--serif);font-weight:700;font-size:clamp(24px,4.5vw,40px);line-height:1.2;text-align:center;margin-bottom:12px;color:var(--text)}
+.section-subtitle{font-size:clamp(14px,2vw,17px);color:var(--text-dim);text-align:center;max-width:560px;margin:0 auto 40px;line-height:1.6}
+.gold-text{color:var(--gold-light)}
+
+/* ========== HERO & MOCKUPS ========== */
+.hero{padding-top:30px;padding-bottom:40px}
+.hero-mockup{width:100%;max-width:420px;height:auto;margin:0 auto;display:block;filter:drop-shadow(0 20px 60px rgba(0,0,0,.6))}
+
+/* ========== INTERACTIVE DEMO ========== */
+.demo-section{background:var(--bg-deep);border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
+.demo-cta-label{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);border-radius:50px;padding:8px 20px;margin-bottom:28px;animation:ctaPulse 2s ease-in-out infinite}
+.demo-cta-label .hand{font-size:18px;animation:point 1s ease-in-out infinite alternate}
+.demo-cta-label span{font-size:14px;font-weight:700;color:var(--gold-light);letter-spacing:.3px}
+@keyframes ctaPulse{0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,.2)}50%{box-shadow:0 0 0 10px rgba(201,168,76,0)}}
+@keyframes point{0%{transform:translateY(0)}100%{transform:translateY(-3px)}}
+.demo-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:560px;margin:0 auto}
+.demo-card{background:var(--bg-card);border:2px dashed rgba(255,255,255,.12);border-radius:14px;padding:20px 16px;cursor:pointer;transition:all .3s ease;text-align:center;position:relative;user-select:none}
+.demo-card:hover{border-color:var(--gold);border-style:solid;transform:translateY(-3px);box-shadow:0 8px 30px rgba(201,168,76,.12)}
+.demo-card.selected{border-color:var(--gold);border-style:solid;background:rgba(201,168,76,.08);box-shadow:0 0 20px rgba(201,168,76,.1)}
+.demo-check{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:6px;border:2px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;transition:all .3s;font-size:12px;color:transparent}
+.demo-card:hover .demo-check{border-color:var(--gold-dim)}
+.demo-card.selected .demo-check{background:var(--gold);border-color:var(--gold);color:#000;font-weight:700}
+.demo-icon{font-size:28px;margin-bottom:8px}
+.demo-label{font-weight:600;font-size:14px;color:var(--text);margin-bottom:4px}
+.demo-desc{font-size:12px;color:var(--text-dim);line-height:1.4}
+.demo-question{font-family:var(--serif);font-size:clamp(17px,3vw,22px);font-weight:600;color:var(--gold-light);text-align:center;margin-bottom:20px;line-height:1.4;font-style:italic}
+
+/* Confronto Reveal */
+.confronto-reveal{max-width:560px;margin:28px auto 0;opacity:0;max-height:0;overflow:hidden;transition:all .6s cubic-bezier(.4,0,.2,1)}
+.confronto-reveal.visible{opacity:1;max-height:800px}
+.confronto-card{background:linear-gradient(160deg,rgba(201,168,76,.06) 0%,rgba(0,0,0,.4) 100%);border:1px solid rgba(201,168,76,.25);border-radius:18px;overflow:hidden}
+.confronto-header{padding:18px 22px 14px;border-bottom:1px solid rgba(201,168,76,.1)}
+.confronto-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--gold);background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:4px 14px;margin-bottom:8px;text-transform:uppercase}
+.confronto-viés{font-family:var(--sans);font-size:13px;color:var(--text-dim)}
+.confronto-viés strong{color:var(--text)}
+.confronto-body{padding:22px}
+.confronto-pergunta{font-family:var(--serif);font-size:clamp(18px,3vw,24px);font-weight:600;color:var(--text);line-height:1.4;margin-bottom:16px;position:relative;padding-left:18px}
+.confronto-pergunta::before{content:'"';position:absolute;left:0;top:-4px;font-size:32px;color:var(--gold);font-family:var(--serif);line-height:1}
+.confronto-reflexao{font-size:14px;color:var(--text-dim);line-height:1.7;padding:14px 16px;background:rgba(255,255,255,.03);border-radius:10px;border-left:3px solid var(--gold-dim)}
+.confronto-footer{padding:16px 22px 20px;text-align:center;border-top:1px solid rgba(255,255,255,.04)}
+.confronto-footer p{font-size:13px;color:var(--text-dim);margin-bottom:12px}
+.confronto-footer p strong{color:var(--text)}
+.confronto-cta{display:inline-block;padding:12px 28px;background:linear-gradient(135deg,var(--gold),#a8872e);color:#000;font-size:13px;font-weight:700;letter-spacing:.5px;border-radius:50px;text-decoration:none;transition:all .3s;box-shadow:0 4px 20px rgba(201,168,76,.25)}
+.confronto-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,.35)}
+
+/* ========== BENEFITS ========== */
+.benefits-list{display:flex;flex-direction:column;gap:20px;max-width:620px;margin:0 auto}
+.benefit-item{display:flex;gap:16px;align-items:flex-start;padding:20px;background:var(--bg-card);border:1px solid rgba(255,255,255,.05);border-radius:14px;transition:border-color .3s}
+.benefit-item:hover{border-color:var(--gold-dim)}
+.benefit-icon{font-size:28px;flex-shrink:0;width:40px;text-align:center}
+.benefit-title{font-weight:700;font-size:15px;color:var(--text);margin-bottom:4px}
+.benefit-desc{font-size:14px;color:var(--text-dim);line-height:1.5}
+
+/* ========== FLEXIBLE USE CALLOUT ========== */
+.callout{max-width:620px;margin:40px auto 0;padding:24px;background:rgba(232,25,44,.06);border:1px solid rgba(232,25,44,.2);border-radius:14px;text-align:center}
+.callout-icon{font-size:22px;margin-bottom:8px}
+.callout p{font-size:14px;color:var(--text-dim);line-height:1.6}
+.callout strong{color:var(--text);font-weight:600}
+.callout .highlight{color:var(--gold-light);font-weight:600}
+
+/* ========== BOOK SLIDER ========== */
+.slider-section{background:var(--bg-deep);overflow:hidden}
+.slider-track{display:flex;gap:20px;animation:scroll 20s linear infinite;width:max-content;padding:20px 0}
+.slider-track:hover{animation-play-state:paused}
+.slider-track img{width:280px;border-radius:10px;box-shadow:0 10px 40px rgba(0,0,0,.5);flex-shrink:0;height:auto;}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ========== VOLUMES ========== */
+.vol-list{display:flex;flex-direction:column;gap:12px;max-width:620px;margin:0 auto}
+.vol-item{padding:16px 20px;background:var(--bg-card);border:1px solid rgba(255,255,255,.05);border-radius:12px;font-size:15px;color:var(--text-dim);line-height:1.5;transition:border-color .3s}
+.vol-item:hover{border-color:var(--gold-dim)}
+.vol-item span{font-size:20px;margin-right:8px}
+.vol-item strong{color:var(--text);font-weight:600}
+.vol-extra{text-align:center;margin-top:24px;font-size:14px;color:var(--text-dim);line-height:1.7;max-width:560px;margin-left:auto;margin-right:auto}
+.vol-extra strong{color:var(--gold-light)}
+
+/* ========== SCIENCE SECTION ========== */
+.science-section{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:70vh;padding:80px 0}
+.science-bg{position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);width:100%;min-width:1000px;height:100%;object-fit:cover;opacity:.25;pointer-events:none}
+.science-content{position:relative;z-index:2;width:100%}
+.science-text{font-size:15px;color:var(--text-dim);line-height:1.7;text-align:center;max-width:600px;margin:0 auto 30px}
+.quote-block{max-width:560px;margin:0 auto;padding:24px 28px;border-left:3px solid var(--gold);background:rgba(201,168,76,.04);border-radius:0 12px 12px 0}
+.quote-block p{font-family:var(--serif);font-size:clamp(16px,2.5vw,20px);font-style:italic;color:var(--text);line-height:1.5;margin-bottom:8px}
+.quote-block cite{font-family:var(--sans);font-size:13px;color:var(--gold);font-style:normal}
+
+/* ========== FOR WHOM ========== */
+.for-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:620px;margin:0 auto}
+.for-card{padding:28px 22px;background:var(--bg-card);border:1px solid rgba(255,255,255,.06);border-radius:16px;text-align:center;transition:border-color .3s}
+.for-card:hover{border-color:var(--gold-dim)}
+.for-card h3{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--gold-light);margin-bottom:10px}
+.for-card p{font-size:13px;color:var(--text-dim);line-height:1.6}
+
+/* ========== BONUS ========== */
+.bonus-section{background:var(--bg-deep)}
+.bonus-grid{display:flex;flex-direction:column;gap:20px;max-width:620px;margin:0 auto}
+.bonus-card{display:flex;gap:18px;align-items:center;padding:20px;background:var(--bg-card);border:1px solid rgba(255,255,255,.06);border-radius:16px;transition:border-color .3s}
+.bonus-card:hover{border-color:var(--gold-dim)}
+.bonus-img{width:150px;height:150px;border-radius:12px;object-fit:cover;flex-shrink:0;box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.bonus-tag{display:inline-block;font-size:11px;font-weight:700;color:var(--gold);background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);border-radius:20px;padding:2px 10px;margin-bottom:6px}
+.bonus-name{font-weight:700;font-size:15px;color:var(--text);margin-bottom:4px}
+.bonus-desc{font-size:13px;color:var(--text-dim);line-height:1.5}
+
+/* ========== TESTIMONIALS GALLERY ========== */
+.testimonials-section{overflow:hidden}
+.test-scroll{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:10px 20px 20px;scrollbar-width:none}
+@media(min-width:1200px){.test-scroll{justify-content:center}}
+.test-scroll::-webkit-scrollbar{display:none}
+.test-card{flex-shrink:0;width:280px;scroll-snap-align:start;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.06)}
+.test-card img{width:100%;height:auto;display:block;}
+
+/* ========== REVIEWS TEXT ========== */
+.reviews-wrap{max-width:620px;margin:30px auto 0;display:flex;flex-direction:column;gap:16px}
+.review-card{padding:20px;background:var(--bg-card);border:1px solid rgba(255,255,255,.06);border-radius:14px}
+.review-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.review-avatar{width:40px;height:40px;border-radius:50%;background:var(--gold-dim);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:var(--gold);flex-shrink:0}
+.review-name{font-weight:600;font-size:14px;color:var(--text)}
+.review-verified{font-size:11px;color:#34d399;margin-left:4px}
+.review-stars{color:var(--gold);font-size:12px;letter-spacing:1px}
+.review-text{font-size:13px;color:var(--text-dim);line-height:1.6}
+
+/* ========== PRICING ========== */
+.pricing-section{background:var(--bg-deep);position:relative;overflow:hidden}
+.pricing-section::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(201,168,76,.06) 0%,transparent 70%);pointer-events:none}
+.pricing-box{max-width:480px;margin:0 auto;text-align:center;position:relative;z-index:2}
+.pricing-mockup{width:100%;max-width:380px;height:auto;margin:0 auto 30px;display:block;filter:drop-shadow(0 15px 50px rgba(0,0,0,.5))}
+.pricing-timer-label{font-size:14px;color:var(--red);font-weight:600;margin-bottom:4px}
+.pricing-timer{font-family:'SF Mono',Consolas,monospace;font-size:22px;font-weight:700;color:#fff;background:rgba(232,25,44,.15);border:1px solid rgba(232,25,44,.3);display:inline-block;padding:6px 16px;border-radius:8px;letter-spacing:2px;margin-bottom:24px}
+.pricing-timer .sep{animation:blink 1s step-end infinite}
+.price-old{font-size:18px;color:var(--text-dim);text-decoration:line-through;margin-bottom:4px}
+.price-label{font-size:15px;color:var(--text-dim);margin-bottom:4px}
+.price-new{font-family:var(--serif);font-size:clamp(80px,10vw,72px);font-weight:700;color:var(--gold-light);line-height:1;margin-bottom:6px}
+.price-new sup{font-size:.4em;top:-.5em;position:relative}
+.cta-btn{display:inline-block;width:100%;max-width:400px;padding:18px 32px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;font-family:var(--sans);font-size:18px;font-weight:700;text-transform:uppercase;letter-spacing:1px;border:none;border-radius:12px;cursor:pointer;transition:all .3s;box-shadow:0 6px 30px rgba(34,197,94,.3);margin:20px 0 12px;position:relative;overflow:hidden;text-decoration:none;}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(34,197,94,.4)}
+.cta-btn::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);animation:shimmer 2.5s ease-in-out infinite}
+.cta-sub{font-size:13px;color:var(--text-dim);margin-bottom:16px}
+.pricing-rating{font-size:14px;color:var(--text-dim)}
+.pricing-rating .stars{color:var(--gold);margin-right:4px}
+
+/* ========== GUARANTEE ========== */
+.guarantee{max-width:560px;margin:0 auto;padding:32px;background:var(--bg-card);border:1px solid rgba(255,255,255,.06);border-radius:18px;text-align:center}
+.guarantee-icon{font-size:48px;margin-bottom:12px}
+.guarantee h3{font-family:var(--serif);font-size:24px;font-weight:700;color:var(--text);margin-bottom:12px}
+.guarantee p{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:20px}
+.guarantee .cta-btn{max-width:340px}
+
+/* ========== FOOTER ========== */
+footer{padding:30px 20px;text-align:center;border-top:1px solid rgba(255,255,255,.04)}
+footer p{font-size:12px;color:rgba(255,255,255,.25)}
+
+/* ========== PURCHASE NOTIFICATIONS ========== */
+.notif{position:fixed;bottom:20px;left:20px;z-index:99998;background:#fff;border-radius:14px;padding:14px 18px 14px 14px;display:flex;align-items:center;gap:12px;box-shadow:0 10px 40px rgba(0,0,0,.5);max-width:340px;transform:translateY(120%);opacity:0;transition:all .5s cubic-bezier(.4,0,.2,1)}
+.notif.show{transform:translateY(0);opacity:1}
+.notif-img{width:48px;height:48px;border-radius:10px;object-fit:cover;flex-shrink:0;display:block;}
+.notif-body{min-width:0}
+.notif-name{font-size:14px;font-weight:700;color:#1a1a1a;display:flex;align-items:center;gap:6px}
+.notif-badge{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600;color:#059669;background:#ecfdf5;border-radius:20px;padding:1px 8px}
+.notif-badge::before{content:'✓';font-size:10px}
+.notif-action{font-size:13px;color:#555;margin-top:2px}
+.notif-time{font-size:11px;color:#999;margin-top:2px}
+
+/* ========== MOBILE ========== */
+@media(max-width:768px){
+  .hero-mockup { max-width: 80%; }
+  .pricing-mockup { max-width: 80%; }
+  
+  .science-section{min-height:auto;padding:50px 0}
+  .science-bg{width:100%;min-width:auto;height:auto;top:40px;left:0;transform:none;object-fit:contain;opacity:0.15}
+}
+@media(max-width:600px){
+  .urgency-bar{gap:5px;padding:8px 8px;height:38px}
+  .ub-text{font-size:10px}.ub-timer{font-size:11px;padding:2px 5px}.ub-fire{font-size:12px}.ub-dot{display:none}
+  .spacer{height:38px}
+  section{padding:40px 0}
+  .container{padding:0 16px}
+  .sp-badge{padding:8px 16px;gap:4px 8px}
+  .sp-badge .stars,.sp-badge .score{font-size:13px}
+  .sp-badge .info{font-size:11px}
+  .demo-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .for-grid{grid-template-columns:1fr;gap:14px}
+  .bonus-card{flex-direction:column;text-align:center;gap:12px}
+  .bonus-img{width:120px;height:120px}
+  .slider-track img{width:220px}
+  .test-card{width:240px}
+  .notif{left:12px;right:12px;max-width:none;bottom:12px}
+  .pricing-mockup{max-width:260px}
+  .hero-mockup{max-width:280px}
+}
+@media(max-width:380px){
+  .demo-grid{grid-template-columns:1fr}
+  .sp-badge .stars,.sp-badge .score{font-size:12px}
+  .sp-badge .info{font-size:10px}
+}
+</style>
+</head>
+<body>
+
+<div class="urgency-bar">
+  <span class="ub-fire">🔥</span>
+  <span class="ub-dot"></span>
+  <span class="ub-text">Letzte Stunden zum Aktionspreis</span>
+  <span class="ub-timer" id="timer1">00<span class="sep">:</span>00<span class="sep">:</span>00</span>
+  <span class="ub-dot"></span>
+  <span class="ub-fire">🔥</span>
+</div>
+<div class="spacer"></div>
+
+<section class="hero">
+<div class="container">
+
+  <div class="sp-wrap">
+    <div class="sp-badge">
+      <span class="stars">★★★★★</span>
+      <span class="score">4.9/5</span>
+      <span class="dot"></span>
+      <span class="info">Von Therapeuten in <b>21 Ländern</b> genutzt</span>
+      <span class="dot"></span>
+      <span class="info">Über <b>100.000</b> Fachleute</span>
+    </div>
+  </div>
+
+  <h1 class="headline">497 Mentale Konfrontationen, um <em>unsichtbare Blockaden des Verstandes zu beseitigen</em></h1>
+  <p class="subheadline">Ein klinisches Arsenal an Interventionen, basierend auf den destruktivsten kognitiven Verzerrungen des menschlichen Verstandes</p>
+
+  <img class="hero-mockup" src="https://i.imgur.com/Tma790E.png" alt="497 Mentale Konfrontationen" fetchpriority="high" loading="eager" decoding="sync">
+
+  <p style="text-align:center;margin-top:24px;font-size:14px;color:var(--text-dim);line-height:1.7;max-width:540px;margin-left:auto;margin-right:auto">
+    Jede Konfrontation wurde entwickelt, um das Gehirn zu zwingen, ein ungesundes Muster aufzugeben, egal ob Sie dies in einer Therapiesitzung oder als Werkzeug zur tiefen Selbsterkenntnis nutzen.
+  </p>
+
+</div>
+</section>
+
+<section class="demo-section">
+<div class="container text-center">
+  <p class="section-title" style="font-size:clamp(22px,3.5vw,26px)">Sehen Sie, wie es in der Praxis funktioniert:</p>
+  <p class="demo-question">Welcher dieser Schmerzen tritt in Ihren Sitzungen oder in Ihrem Leben am häufigsten auf?</p>
+
+  <div class="demo-cta-label">
+    <span class="hand">👇</span>
+    <span>WÄHLEN SIE EINE OPTION UND ERHALTEN SIE EINE ECHTE KONFRONTATION</span>
+  </div>
+
+  <div class="demo-grid">
+    <div class="demo-card" onclick="selectDemo(this,0)">
+      <div class="demo-check">✓</div>
+      <div class="demo-icon">🔁</div>
+      <div class="demo-label">Wiederholungsmuster</div>
+      <div class="demo-desc">Ein Patient, der in der Liebe oder bei den Finanzen immer wieder dieselben Fehler macht</div>
+    </div>
+    <div class="demo-card" onclick="selectDemo(this,1)">
+      <div class="demo-check">✓</div>
+      <div class="demo-icon">🧊</div>
+      <div class="demo-label">Rationale Blockade</div>
+      <div class="demo-desc">Ein hyper-rationaler Patient ohne Zugang zu Emotionen</div>
+    </div>
+    <div class="demo-card" onclick="selectDemo(this,2)">
+      <div class="demo-check">✓</div>
+      <div class="demo-icon">😰</div>
+      <div class="demo-label">Chronische Angst</div>
+      <div class="demo-desc">Angst, die auf traditionelle Techniken nicht reagiert</div>
+    </div>
+    <div class="demo-card" onclick="selectDemo(this,3)">
+      <div class="demo-check">✓</div>
+      <div class="demo-icon">💔</div>
+      <div class="demo-label">Toxische Beziehungen</div>
+      <div class="demo-desc">Bindung an Menschen und Situationen, die Leiden verursachen</div>
+    </div>
+  </div>
+
+  <div class="confronto-reveal" id="confrontoReveal">
+    <div class="confronto-card">
+      <div class="confronto-header">
+        <div class="confronto-badge">ECHTE KONFRONTATION AUS DEM MATERIAL</div>
+        <div class="confronto-viés" id="confrontoVies"></div>
+      </div>
+      <div class="confronto-body">
+        <div class="confronto-pergunta" id="confrontoPergunta"></div>
+        <div class="confronto-reflexao" id="confrontoReflexao"></div>
+      </div>
+      <div class="confronto-footer">
+        <p>Dies ist <strong>1</strong> von <strong>497 Konfrontationen</strong> im vollständigen Material.</p>
+        <a href="#preco" class="confronto-cta">ICH MÖCHTE ALLE 497 KONFRONTATIONEN →</a>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section>
+<div class="container">
+  <p class="section-title">Alles, was Sie durch<br>dieses Material gewinnen werden:</p>
+  <div style="height:32px"></div>
+
+  <div class="benefits-list">
+    <div class="benefit-item">
+      <div class="benefit-icon">🧬</div>
+      <div>
+        <div class="benefit-title">Diagnose kognitiver Verzerrungen</div>
+        <div class="benefit-desc">Lokalisieren Sie den genauen kognitiven Fehler, in dem Ihr Verstand feststeckt und der Ihre Ergebnisse lähmt.</div>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon">🔐</div>
+      <div>
+        <div class="benefit-title">Durchbrechen von Wiederholungen</div>
+        <div class="benefit-desc">Hören Sie auf, dieselben finanziellen und romantischen Fehler zu wiederholen, indem Sie die Selbstsabotage direkt an ihrer Quelle entschärfen.</div>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon">⚡</div>
+      <div>
+        <div class="benefit-title">Sofortige Klarheit</div>
+        <div class="benefit-desc">Band 1 befreit Sie nach dem ersten Lesen von chronischen Schuldgefühlen und der Last schlechter Entscheidungen aus der Vergangenheit.</div>
+      </div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon">👁️</div>
+      <div>
+        <div class="benefit-title">Ego-Audit</div>
+        <div class="benefit-desc">Durchschauen Sie die Lügen, die Sie sich selbst erzählen, um Ihren eigenen Schmerz zu rechtfertigen, und gewinnen Sie die Kontrolle über Ihre Entscheidungen zurück.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-icon">⚠️</div>
+    <p>Dieses Material kann flexibel eingesetzt werden, je nach Ihren persönlichen oder beruflichen Zielen.<br><br>
+    Wenn Sie ein <span class="highlight">Therapeut, Psychologe, Coach oder Experte für mentale Gesundheit</span> sind,
+    werden diese Interventionen zu einem Katalysator für tiefgreifende Durchbrüche in Ihren Sitzungen, selbst bei widerstandsfähigen, hyper-rationalen oder emotional blockierten Klienten.</p>
+  </div>
+</div>
+</section>
+
+<section class="slider-section">
+<div class="container">
+  <p class="section-title">Sehen Sie, wie das Material im Inneren aussieht:</p>
+  <p class="section-subtitle">Von der Identifizierung der mentalen Falle bis zur Umstrukturierung und Auflösung des Musters.</p>
+</div>
+<div style="overflow:hidden">
+  <div class="slider-track" id="sliderTrack">
+    <img src="https://i.imgur.com/8GSXj6Q.png" alt="Seite 1" loading="eager" decoding="sync">
+    <img src="https://i.imgur.com/BbelDDi.png" alt="Seite 2" loading="eager" decoding="sync">
+    <img src="https://i.imgur.com/V06dLel.png" alt="Seite 3" loading="eager" decoding="sync">
+    <img src="https://i.imgur.com/4FZxz0K.png" alt="Seite 4" loading="eager" decoding="sync">
+    <img src="https://i.imgur.com/8GSXj6Q.png" alt="Seite 1" loading="eager" decoding="sync">
+    <img src="https://i.imgur.com/BbelDDi.png" alt="Seite 2" loading="eager" decoding="sync">
+    <img src="https://i.imgur.com/V06dLel.png" alt="Seite 3" loading="eager" decoding="sync">
+    <img src="https://i.imgur.com/4FZxz0K.png" alt="Seite 4" loading="eager" decoding="sync">
+  </div>
+</div>
+</section>
+
+<section>
+<div class="container">
+  <div class="vol-list">
+    <div class="vol-item"><span>🧬</span> <strong>Band 1: Das Gefängnis der Vergangenheit</strong> — Sunk-Cost-Falle (Versunkene Kosten) und Bindung an das Leiden</div>
+    <div class="vol-item"><span>🌳</span> <strong>Band 2: Die Linse der Illusion</strong> — Bestätigungsfehler und der Glaube an Liebesmangel</div>
+    <div class="vol-item"><span>🌑</span> <strong>Band 3: Die Angst vor dem Neuen</strong> — Status-Quo-Fehler und die Angst vor Veränderung</div>
+    <div class="vol-item"><span>⚗️</span> <strong>Band 4: Die Sucht nach dem Mangel</strong> — Negativitätsverzerrung und die Wurzeln der Angst</div>
+    <div class="vol-item"><span>🔓</span> <strong>Band 5: Das Kontrollsyndrom</strong> — Die Illusion der Kontrolle und Toxizität in Beziehungen</div>
+  </div>
+  <div class="vol-extra">
+    Und mehr: <strong>Emotionaler Dunning-Kruger-Effekt</strong>, Unterlassungseffekt (Omission Bias), Halo-Effekt, Verankerung von Traumata und <strong>die Dynamik der falschen Hoffnung</strong>.
+  </div>
+</div>
+</section>
+
+<section class="science-section">
+  <img class="science-bg" src="https://i.imgur.com/1vDBerw.png" alt="">
+  <div class="container science-content">
+    <p class="section-title">Wissenschaftliche und klinische Grundlagen<br>unseres Materials</p>
+    <div style="height:24px"></div>
+    <p class="science-text">Dies sind <strong style="color:var(--text)">497 Mentale Konfrontationen</strong>, die auf den Säulen der Neurowissenschaften, der kognitiven Verhaltenstherapie (Aaron Beck) und der Verhaltensökonomie (Daniel Kahneman) basieren.</p>
+    <p class="science-text">Dies sind keine zufälligen Fragen. Es ist ein entschlüsseltes klinisches Protokoll, das das Gehirn zwingt, ungesunde kognitive Verzerrungen aufzugeben, und enthüllt, was das Ego zu verbergen versucht.</p>
+
+    <div class="quote-block">
+      <p>"Wir sind blind für unsere eigene Blindheit. Und noch schlimmer: Wir wissen nicht, wie viel wir nicht wissen."</p>
+      <cite>— Daniel Kahneman (Nobelpreisträger)</cite>
+    </div>
+  </div>
+</section>
+
+<section>
+<div class="container">
+  <p class="section-title">Für wen ist das?</p>
+  <div style="height:32px"></div>
+  <div class="for-grid">
+    <div class="for-card">
+      <h3>Privatpersonen</h3>
+      <p>Die Befreiung von wiederkehrenden emotionalen Mustern und unsichtbaren Blockaden suchen, die Wohlstand, Karriere und Liebe lähmen.</p>
+    </div>
+    <div class="for-card">
+      <h3>Fachleute der mentalen Gesundheit</h3>
+      <p>Psychologen, Therapeuten und Coaches, die ein praktisches Werkzeug suchen, um den Kern des Unbewussten zu berühren und die klinische Diagnose zu beschleunigen.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="bonus-section">
+<div class="container">
+  <p class="section-title">Kaufen Sie heute und erhalten Sie<br><span class="gold-text">5 exklusive Boni:</span></p>
+  <div style="height:32px"></div>
+  <div class="bonus-grid">
+
+    <div class="bonus-card">
+      <img class="bonus-img" src="https://i.imgur.com/FWRITQO.png" alt="Bonus 1" loading="eager" decoding="sync">
+      <div>
+        <div class="bonus-tag">🎁 Bonus 1</div>
+        <div class="bonus-name">Audioaufnahmen zur Vorbereitung und Fokussierung</div>
+        <div class="bonus-desc">Binaurale Beats zur Konzentration, begleitend zur Lektüre oder für den Therapeuten zum Anhören vor Beginn der Sitzung.</div>
+      </div>
+    </div>
+
+    <div class="bonus-card">
+      <img class="bonus-img" src="https://i.imgur.com/4pljYCc.png" alt="Bonus 2" loading="eager" decoding="sync">
+      <div>
+        <div class="bonus-tag">🎁 Bonus 2</div>
+        <div class="bonus-name">Klinischer Leitfaden zur Verschreibung von Verzerrungen</div>
+        <div class="bonus-desc">Eine schnelle Karte: "Wenn der Schmerz so ist → Verwenden Sie diese kognitive Verzerrung → Wenden Sie diese Konfrontation an". Lernen Sie, das Material in 50-minütigen Sitzungen präzise einzusetzen.</div>
+      </div>
+    </div>
+
+    <div class="bonus-card">
+      <img class="bonus-img" src="https://i.imgur.com/s3aOoPX.png" alt="Bonus 3" loading="eager" decoding="sync">
+      <div>
+        <div class="bonus-tag">🎁 Bonus 3</div>
+        <div class="bonus-name">Illusion-Tracker</div>
+        <div class="bonus-desc">Ein Werkzeug mit Anweisungen, mit dem Sie im Laufe einer Woche verfolgen können, wie oft Sie in die Falle der Negativität oder des Bestätigungsfehlers getappt sind.</div>
+      </div>
+    </div>
+
+    <div class="bonus-card">
+      <img class="bonus-img" src="https://i.imgur.com/3SSPBgi.png" alt="Bonus 4" loading="eager" decoding="sync">
+      <div>
+        <div class="bonus-tag">🎁 Bonus 4</div>
+        <div class="bonus-name">52 Kognitive Schock-Karten</div>
+        <div class="bonus-desc">Ein virtuelles Deck mit den 52 mächtigsten Metaphern aus dem Buch. Ideal für die tägliche Reflexion oder als Geschenk am Ende einer Sitzung.</div>
+      </div>
+    </div>
+
+    <div class="bonus-card">
+      <img class="bonus-img" src="https://i.imgur.com/cfbSndE.png" alt="Bonus 5" loading="eager" decoding="sync">
+      <div>
+        <div class="bonus-tag">🎁 Bonus 5</div>
+        <div class="bonus-name">Community "Therapeut der Zukunft"</div>
+        <div class="bonus-desc">Vernetzen Sie sich mit Therapeuten, die ebenfalls nach Innovationen, verfeinertem Zuhören und wirkungsvollen klinischen Werkzeugen suchen.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <p style="text-align:center;margin-top:36px;font-size:14px;color:var(--text-dim)">Unsere Werkzeuge haben bereits <strong style="color:var(--text)">über 100.000 Fachleuten</strong> in mehr als <strong style="color:var(--text)">21 Ländern</strong> geholfen.</p>
+</div>
+</section>
+
+<section class="pricing-section" id="preco">
+<div class="container">
+  <div class="pricing-box">
+
+    <img class="pricing-mockup" src="https://i.imgur.com/Ugwkrm2.png" alt="497 Mentale Konfrontationen" loading="eager" decoding="sync">
+
+    <div class="pricing-timer-label">Aktions-Einführungspreis nur noch bis zum <span id="todayDate"></span></div>
+    <div style="margin-bottom:6px;font-size:13px;color:var(--text-dim)">Aktion endet in</div>
+    <div class="pricing-timer" id="timer2">00<span class="sep">:</span>00<span class="sep">:</span>00</div>
+
+    <div class="price-old">Statt 97 €</div>
+    <div class="price-label">für nur:</div>
+    <div class="price-new">29 <sup>€</sup></div>
+    
+    <div style="font-size: 12px; color: var(--text-dim); margin-top: -5px; margin-bottom: 15px;">inkl. MwSt.</div>
+
+    <a href="https://pay.hotmart.com/J105738429K?checkoutMode=10" class="cta-btn">JETZT KOSTENPFLICHTIG BESTELLEN</a>
+    
+    <div class="cta-sub">Sofortiger Zugang. 14 Tage Garantie.</div>
+
+    <div class="pricing-rating">
+      <span class="stars">★★★★★</span> 4.9/5 · 73 Bewertungen
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="testimonials-section">
+<div class="container">
+  <p class="section-title" style="margin-bottom:24px">Was andere sagen:</p>
+</div>
+<div class="test-scroll">
+  <div class="test-card"><img class="test-img" src="https://i.imgur.com/4NsDJ4r.png" alt="Bewertung" loading="eager" decoding="sync"></div>
+  <div class="test-card"><img class="test-img" src="https://i.imgur.com/TWZc1xU.png" alt="Bewertung" loading="eager" decoding="sync"></div>
+  <div class="test-card"><img class="test-img" src="https://i.imgur.com/ACVoHMg.png" alt="Bewertung" loading="eager" decoding="sync"></div>
+  <div class="test-card"><img class="test-img" src="https://i.imgur.com/g9PonpG.png" alt="Bewertung" loading="eager" decoding="sync"></div>
+</div>
+
+<div class="container">
+  <div class="reviews-wrap">
+    <div class="review-card">
+      <div class="review-top">
+        <div class="review-avatar">KR</div>
+        <div><div class="review-name">Katharina R. <span class="review-verified">✔ Verifiziert</span></div><div class="review-stars">★★★★★</div></div>
+      </div>
+      <div class="review-text">Ich bin KVT-Psychotherapeutin und dieses Material hat kognitive Verzerrungen auf unwirkliche Weise übersetzt. Ich habe heute 3 Konfrontationen bei einem sehr widerstandsfähigen Patienten angewendet und er hat sich sofort geöffnet. Die Reaktion war erstaunlich.</div>
+    </div>
+    <div class="review-card">
+      <div class="review-top">
+        <div class="review-avatar">SM</div>
+        <div><div class="review-name">Sabine M. <span class="review-verified">✔ Verifiziert</span></div><div class="review-stars">★★★★★</div></div>
+      </div>
+      <div class="review-text">Ich bin keine Therapeutin, aber das Erkennen der "Blockaden" in meinem Kopf hat mich mehr geheilt als 2 Jahre, in denen ich denselben Schmerz durchlebt habe. Die Konfrontationen geben uns eine Ohrfeige und zwingen uns, die Opfermentalität aufzugeben.</div>
+    </div>
+    <div class="review-card">
+      <div class="review-top">
+        <div class="review-avatar">AR</div>
+        <div><div class="review-name">Anna R. <span class="review-verified">✔ Verifiziert</span></div><div class="review-stars">★★★★★</div></div>
+      </div>
+      <div class="review-text">Ich liebe es! Sie können blind kaufen... das Material ist wunderschön, bringt es auf den Punkt und ist sehr nützlich. Glückwunsch zu dieser großartigen Arbeit.</div>
+    </div>
+    <div class="review-card">
+      <div class="review-top">
+        <div class="review-avatar">JW</div>
+        <div><div class="review-name">Julia W. <span class="review-verified">✔ Verifiziert</span></div><div class="review-stars">★★★★★</div></div>
+      </div>
+      <div class="review-text">Leute!! Was für ein perfektes Material... Ich verwende es in der Arbeit mit Patienten als Werkzeug, um den Prozess zu vertiefen. Die Art und Weise, wie der Autor psychologische Verzerrungen mit dem wahren Schmerz der Person verbindet, ist genial. Es ist tiefgründig, respektvoll und transformierend.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section>
+<div class="container">
+  <div class="guarantee">
+    <div class="guarantee-icon">🛡️</div>
+    <h3>Bedingungslose 14-Tage-Garantie</h3>
+    <p>Wenn Sie in Ihren nächsten 14 Sitzungen nicht das Gefühl haben, dass Sie den Verstand Ihrer Patienten (oder Ihren eigenen) wie nie zuvor beherrschen, senden Sie uns eine E-Mail und wir erstatten Ihnen jeden Cent – ohne Fragen zu stellen.</p>
+    
+    <a href="https://pay.hotmart.com/J105738429K?checkoutMode=10" class="cta-btn">JETZT HERUNTERLADEN</a>
+  </div>
+</div>
+</section>
+
+<footer>
+  <p>Therapeut der Zukunft © Copyright – Alle Rechte vorbehalten.</p>
+</footer>
+
+<div class="notif" id="notif">
+  <img class="notif-img" src="https://i.imgur.com/Tma790E.png" alt="Benachrichtigung" loading="eager" decoding="sync">
+  <div class="notif-body">
+    <div class="notif-name"><span id="notifName">Peter</span>, <span id="notifCity">Berlin</span> <span class="notif-badge">Verifiziert</span></div>
+    <div class="notif-action">hat gerade gekauft</div>
+    <div class="notif-time" id="notifTime">vor 3 Minuten</div>
+  </div>
+</div>
+
+<script>
+/* ===== CURRENT DATE & COUNTDOWN ===== */
+const tDate = new Date();
+const dateEl = document.getElementById('todayDate');
+if(dateEl) {
+  dateEl.innerText = String(tDate.getDate()).padStart(2,'0') + '.' + String(tDate.getMonth()+1).padStart(2,'0') + '.' + tDate.getFullYear();
+}
+
+function updateTimers(){
+  const now=new Date(),end=new Date();end.setHours(23,59,59,999);
+  const d=Math.max(0,end-now);
+  const h=String(Math.floor(d/36e5)).padStart(2,'0');
+  const m=String(Math.floor((d%36e5)/6e4)).padStart(2,'0');
+  const s=String(Math.floor((d%6e4)/1e3)).padStart(2,'0');
+  const html=h+'<span class="sep">:</span>'+m+'<span class="sep">:</span>'+s;
+  document.getElementById('timer1').innerHTML=html;
+  document.getElementById('timer2').innerHTML=html;
+}
+updateTimers();setInterval(updateTimers,1000);
+
+/* ===== DEMO CONFRONTO SELECTION ===== */
+const confrontos=[
+  {
+    vies:'<strong>Sunk-Cost-Falle</strong> (Versunkene Kosten) — Band 1: Das Gefängnis der Vergangenheit',
+    pergunta:'Stellen Sie sich vor, Sie haben ein teures Kinoticket gekauft. Nach 40 Minuten stellen Sie fest, dass der Film schrecklich ist. Würden Sie nur bis zum Ende bleiben, weil Sie bereits dafür bezahlt haben? Im wirklichen Leben machen Sie das seit Jahren — Sie bleiben in einer Beziehung, in einem Job, in einem Schmerzmuster... nur weil Sie "schon so viel investiert" haben. Die Frage ist: Wie viel Ihres Lebens wollen Sie noch verschwenden, indem Sie sich einen Film ansehen, der Sie leiden lässt?',
+    reflexao:'Ihr Gehirn täuscht Sie und sagt: "Ich habe so viel gegeben, ich kann jetzt nicht aufhören". Aber die Zeit, die Sie bereits verloren haben, kommt nicht zurück — sie ist weg. Das Einzige, was Sie voll und ganz kontrollieren können, ist, ob Sie sie weiter verschwenden werden.'
+  },
+  {
+    vies:'<strong>Bestätigungsfehler</strong> — Band 2: Die Linse der Illusion',
+    pergunta:'Es ist, als ob Sie mit einer dunklen Sonnenbrille leben und sagen: "Es ist bewiesen, dass die Welt dunkel ist". Sie haben sie nie abgenommen, um es zu überprüfen. Seit Jahren sammelt Ihr Verstand alle Beweise dafür, dass Sie es nicht können, es nicht verdienen, es nicht schaffen. Aber sagen Sie mir eins: Haben Sie jemals mit dem gleichen Engagement nach Beweisen gesucht, dass Sie es doch können?',
+    reflexao:'Sie sind nicht rational — Sie sind selektiv. Ihr Verstand arbeitet wie ein korrupter Anwalt: Er präsentiert nur die Beweise, die das Urteil bestätigen, das er bereits gefällt hat. Und Sie haben an dieses Urteil geglaubt, ohne den Richter in Frage zu stellen.'
+  },
+  {
+    vies:'<strong>Negativitätsverzerrung</strong> — Band 4: Die Sucht nach dem Mangel',
+    pergunta:'Ihr Verstand hat es geschafft, die Angst 5, 10, 15 Jahre lang am Leben zu erhalten — ohne zu vergessen, ohne zu scheitern, ohne sich einen Tag freizunehmen. Er ist unglaublich mächtig. Und jetzt antworten Sie mir: Wenn er so kompetent darin ist, die Angst mit perfekter Präzision aufrechtzuerhalten... warum glauben Sie, dass er nicht in der Lage wäre, eine neue Geschichte am Leben zu erhalten, wenn Sie ihm etwas anderes zu erinnern gäben?',
+    reflexao:'Das Problem ist nicht, dass Ihr Verstand schwach ist. Sie haben ihn zu lange nur für die falsche Seite arbeiten lassen. Dieselbe Maschine, die Ihre Angst nährt, ist in der Lage, neues Leben zu nähren.'
+  },
+  {
+    vies:'<strong>Illusion der Kontrolle</strong> — Band 5: Das Kontrollsyndrom',
+    pergunta:'Stellen Sie sich vor, Sie pflanzen jeden Tag einen Samen in Beton. Sie gießen ihn jeden Tag, pflegen ihn, warten. Und jeden Tag wächst nichts. Dann fragt jemand: "Warum pflanzt du nicht in die Erde?", und Sie antworten: "Weil ich hier schon zu viel Wasser verschwendet habe". Wenn Sie – mit 100%iger Sicherheit – wüssten, dass sich diese Person nie ändern wird, weder in einem Jahr, noch in 5, noch in 20 Jahren... wie lange würden Sie diesen Beton noch gießen?',
+    reflexao:'Sie kämpfen nicht um diese Beziehung. Sie kämpfen gegen die Realität. Und die Realität gewinnt immer. Ihr Schmerz kommt nicht vom Ende der Liebe — er kommt von der Erkenntnis, dass sie schon lange vorbei ist und Sie aus Angst vor der Leere daran festgehalten haben.'
+  }
+];
+
+function selectDemo(el,idx){
+  document.querySelectorAll('.demo-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  const c=confrontos[idx];
+  document.getElementById('confrontoVies').innerHTML=c.vies;
+  document.getElementById('confrontoPergunta').textContent=c.pergunta;
+  document.getElementById('confrontoReflexao').textContent=c.reflexao;
+  const reveal=document.getElementById('confrontoReveal');
+  reveal.classList.add('visible');
+  setTimeout(()=>{reveal.scrollIntoView({behavior:'smooth',block:'nearest'})},100);
+}
+
+const buyers=[
+  {name:"Peter",city:"Berlin"},
+  {name:"Anna",city:"München"},
+  {name:"Michael",city:"Hamburg"},
+  {name:"Katharina",city:"Köln"},
+  {name:"Thomas",city:"Frankfurt"},
+  {name:"Magdalena",city:"Stuttgart"},
+  {name:"Christian",city:"Düsseldorf"},
+  {name:"Agnieszka",city:"Leipzig"},
+  {name:"Martin",city:"Dortmund"}
+];
+const times=["gerade eben","vor 2 Minuten","vor 5 Minuten","vor 8 Minuten","vor 12 Minuten","vor 15 Minuten","vor 18 Minuten"];
+const notifEl=document.getElementById('notif');
+const notifName=document.getElementById('notifName');
+const notifCity=document.getElementById('notifCity');
+const notifTime=document.getElementById('notifTime');
+let notifIndex=0;
+
+function showNotification(){
+  const b=buyers[notifIndex%buyers.length];
+  const t=times[Math.floor(Math.random()*times.length)];
+  notifName.textContent=b.name;
+  notifCity.textContent=b.city;
+  notifTime.textContent=t;
+  notifEl.classList.add('show');
+  setTimeout(()=>{notifEl.classList.remove('show')},5000);
+  notifIndex++;
+}
+
+// First notification after 8s, then every 15-25s random
+setTimeout(()=>{
+  showNotification();
+  setInterval(()=>{showNotification()},15000+Math.random()*10000);
+},8000);
+</script>
+
+</body>
+</html>
+
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1228595859155894');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1228595859155894&ev=PageView&noscript=1"
+/></noscript>
+<script
+  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+  data-utmify-prevent-xcod-sck
+  data-utmify-prevent-subids
+  async
+  defer
+></script>
+
+
+<script>
+  window.pixelId = "69fd24232e9026ad8734826a";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+  document.head.appendChild(a);
+</script>
+
+<script
+  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+  data-utmify-prevent-subids
+  async
+  defer
+></script>
